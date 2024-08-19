@@ -1,10 +1,29 @@
 package main.sorter;
 
 public class MergeSort implements Sorter {
-
-    @Override
+ @Override
     public int[] sort(int[] values) {
-        // mergesort implementation
+        if (values.length <= 1) return values;
+
+        int middle = values.length/2;
+        int leftArray[] = new int[middle];
+        int rightArray[] = new int[values.length - middle];
+
+        int i = 0;
+        int j = 0;
+
+        for(; i < values.length; i++){
+            if (i < middle){
+                leftArray[i] = values[i];
+            } else {
+                rightArray[j] = values[i];
+                j++;
+            }
+        }
+        sort(leftArray);
+        sort(rightArray);
+        merge(leftArray, rightArray, values);
+
         return values;
     }
 
